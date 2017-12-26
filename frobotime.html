@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>FRobotime</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			var nameList = [];
+			$.getJSON("data/data.json", function(data) {
+				nameList = data.names.split(",");
+				
+				$(nameList).each(function(index, item) {
+					var option = $('<option value="' + item + '"></option>');
+					$('#names').append(option);
+				});
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<form action="http://mikecao.me:8080/" method="POST">
+		Name:<br>
+		<datalist id="names"></datalist>
+		<input type="text" name="name" list="names">
+		<br><br>
+		
+		Sign In / Sign Out:<br>
+		<input type="radio" name="type" value="in" />Sign In<br />
+		<input type="radio" name="type" value="out" />Sign Out<br />
+		<br>
+		
+		<input type="submit" value="Submit">
+	</form>
+</body>
+
+</html>
