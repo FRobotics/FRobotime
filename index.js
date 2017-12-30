@@ -20,6 +20,14 @@ app.get('/data/data.json', function (req, res) {
 	res.sendFile(__dirname + "/data/data.json");
 });
 
+app.get('/main.css', function (req, res) {
+	res.sendFile(__dirname + "/main.css");
+});
+
+app.get('/materialize.css', function (req, res) {
+	res.sendFile(__dirname + "/materialize.css");
+});
+
 app.use((req, res) => {
 	res.sendFile(__dirname + "/404.html")
 });
