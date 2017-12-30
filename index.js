@@ -6,7 +6,7 @@ var path = require('path');
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.post('/frobotime', function (req, res) {
+app.post('/submit', function (req, res) {
 	console.log(req.body);
 	res.sendFile(__dirname + "/success.html");
 });

@@ -24,13 +24,13 @@
 
 <body>
 	<img src="logo.jpg" alt="Super Amazing FRobotics Logo">
-	<form action="http://mikecao.me:8080/frobotime" method="POST">
+	<form action="http://mikecao.me:8080/submit" method="POST">
 		<h2>FRobotime</h2>
 		<br>
 
 		<div class="group">
 			<select id="name" name="name">
-				<option value="choose"></option>
+				<option value="" disabled selected>Select your name</option>
 			</select>
 			<label>Name</label>
 		</div>
@@ -38,7 +38,7 @@
 
 		<div class="group">
 			<select id="type" name="type">
-				<option value="choose"></option>
+				<option value="" disabled selected>In / Out</option>
 				<option value="in">Sign In</option>
 				<option value="out">Sign Out</option>
 			</select>
