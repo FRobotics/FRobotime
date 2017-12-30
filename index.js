@@ -18,4 +18,8 @@ app.get('/frobotime.html', function (req, res) {
 
 app.use("/", express.static("static"))
 
+app.use((req, res) => {
+	res.sendFile(__dirname + "static/404.html")
+});
+
 app.listen(8080);
