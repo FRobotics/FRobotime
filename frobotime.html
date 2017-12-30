@@ -14,7 +14,7 @@
 
 				$(nameList).each(function (index, item) {
 					var option = $('<option value="' + item + '"></option>');
-					$('#names').append(option);
+					$('#type').append(option);
 				});
 			});
 		});
@@ -34,11 +34,11 @@
 
 
 		<div class="group">
-			<datalist id="types">
-				<option value="Sign In"></option>
-				<option value="Sign Out"></option>
-			</datalist>
-			<input type="select" name="types" list="types">
+			
+			<select id="type" name="type">
+				<option value="in">Sign In</option>
+				<option value="out">Sign Out</option>
+			</select>
 			<label>Type</label>
 		</div>
 
