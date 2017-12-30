@@ -28,6 +28,10 @@ app.get('/materialize.css', function (req, res) {
 	res.sendFile(__dirname + "/materialize.css");
 });
 
+app.get('/logo.jpg', function (req, res) {
+	res.sendFile(__dirname + "/logo.jpg");
+});
+
 app.use((req, res) => {
 	res.sendFile(__dirname + "/404.html")
 });
