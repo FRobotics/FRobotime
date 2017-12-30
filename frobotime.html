@@ -13,7 +13,7 @@
 				nameList = data.names.split(",");
 
 				$(nameList).each(function (index, item) {
-					var option = $('<option value="' + item + '"></option>');
+					var option = $('<option value="' + item + '">' + item + '</option>');
 					$('#type').append(option);
 				});
 			});
