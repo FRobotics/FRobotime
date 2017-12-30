@@ -16,24 +16,6 @@ app.get('/frobotime.html', function (req, res) {
 	res.sendFile(__dirname + "/frobotime.html");
 });
 
-app.get('/data/data.json', function (req, res) {
-	res.sendFile(__dirname + "/data/data.json");
-});
-
-app.get('/main.css', function (req, res) {
-	res.sendFile(__dirname + "/main.css");
-});
-
-app.get('/materialize.css', function (req, res) {
-	res.sendFile(__dirname + "/materialize.css");
-});
-
-app.get('/logo.jpg', function (req, res) {
-	res.sendFile(__dirname + "/logo.jpg");
-});
-
-app.use((req, res) => {
-	res.sendFile(__dirname + "/404.html")
-});
+app.use("/", express.static("static"))
 
 app.listen(8080);
