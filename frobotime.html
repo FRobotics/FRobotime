@@ -2,14 +2,16 @@
 <html>
 
 <head>
-	<title>FRobotime</title>
+    <title>FRobotime</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+	<link rel="stylesheet" href="main.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script>
 		$(document).ready(function() {
 			var nameList = [];
 			$.getJSON("data/data.json", function(data) {
 				nameList = data.names.split(",");
-				
+
 				$(nameList).each(function(index, item) {
 					var option = $('<option value="' + item + '"></option>');
 					$('#names').append(option);
@@ -21,16 +23,25 @@
 
 <body>
 	<form action="http://mikecao.me:8080/frobotime" method="POST">
-		Name:<br>
-		<datalist id="names"></datalist>
-		<input type="text" name="name" list="names">
-		<br><br>
-		
-		Sign In / Sign Out:<br>
-		<input type="radio" name="type" value="in" />Sign In<br />
-		<input type="radio" name="type" value="out" />Sign Out<br />
-		<br>
-		
+		<h2>FRobotime</h2><br>
+
+		<div class="group">
+			<datalist id="names"></datalist>
+			<input type="text" name="name" list="names">
+			<label>Name</label>
+		</div>
+
+
+		<div class="group">
+			<datalist id="types">
+            <option value="Sign In"></option>
+            <option value="Sign Out"></option>
+        </datalist>
+			<input type="text" name="types" list="types">
+			<label>Type</label>
+		</div>
+
+
 		<input type="submit" value="Submit">
 	</form>
 </body>

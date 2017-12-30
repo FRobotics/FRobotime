@@ -20,4 +20,8 @@ app.get('/data/data.json', function (req, res) {
 	res.sendFile(__dirname + "/data/data.json");
 });
 
+app.use((req, res) => {
+	res.sendFile(__dirname + "/404.html")
+});
+
 app.listen(8080);
