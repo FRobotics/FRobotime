@@ -8,7 +8,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post('/submit', function (req, res) {
 	console.log(req.body);
-	res.sendFile(__dirname + "/success.html");
+	if (req.body.name && req.body.type)
+		res.sendFile(__dirname + "/success.html");
+	return;
 });
 
 app.get('/frobotime.html', function (req, res) {
