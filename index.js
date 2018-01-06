@@ -1,15 +1,21 @@
-var express = require("express");
-var app = express();
-var bodyParser = require('body-parser');
-var path = require('path');
+var express = require("express"),
+	app = express(),
+	bodyParser = require('body-parser'),
+	path = require('path'),
+	db = require('./db.js');
+
+db.initialize();
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post('/submit', function (req, res) {
 	console.log(req.body);
-	if (req.body.name && req.body.type)
+	
+	if (req.body.name && req.body.type) {
+		db.store(req.body);
 		res.sendFile(__dirname + "/success.html");
+	}
 	return;
 });
 
