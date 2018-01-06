@@ -17,6 +17,17 @@ exports.initialize = function () {
 };
 
 exports.store = function (data) {
+    function getWorkshopID () {
+        var year = String(new Date().getYear() + 1900),
+            month = String(new Date().getMonth() + 1),
+            day = String(new Date().getDate())
+        if (month.length < 2)
+            month = 0 + month
+        if (day.length < 2)
+            day = 0 + day
+        return year + month + day
+    }
+
     if (data.type == "in") {
         var workshopID = getWorkshopID();
         db.run(`INSERT OR IGNORE INTO timetable VALUES (
@@ -28,15 +39,4 @@ exports.store = function (data) {
         );
         console.log("Data successfully stored!")
     }
-};
-
-exports.getWorkshopID = function () {
-    var year = String(new Date().getYear() + 1900),
-        month = String(new Date().getMonth() + 1),
-        day = String(new Date().getDate())
-    if (month.length < 2)
-        month = 0 + month
-    if (day.length < 2)
-        day = 0 + day
-    return year + month + day
 };
