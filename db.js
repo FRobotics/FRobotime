@@ -51,7 +51,7 @@ exports.workshopInProgress = function() {
 };
 
 exports.isOfficer = function(name) {
-    return OFFICERS.indexOf(data.name) > -1
+    return OFFICERS.indexOf(name) > -1
 };
 
 exports.allOfficersOut = function() {
