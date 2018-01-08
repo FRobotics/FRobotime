@@ -1,5 +1,7 @@
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('./timetable.sqlite');
+const OFFICERS = ["Michael Rossi", "Michael Cao", "Courtney Sheridan", "Matt Pekarcik", "Meg Anderson"];
+var inProgress = false;
 
 /**
  * @description Initializes the Database.
@@ -28,6 +30,8 @@ exports.store = function(data) {
     }
 
     if (data.type == "in") {
+        if (OFFICERS.indexOf(data.name) > -1)
+            inProgress = true;
         var workshopID = getWorkshopID();
         db.run(`INSERT OR IGNORE INTO timetable VALUES (
             "${workshopID}",
@@ -37,4 +41,11 @@ exports.store = function(data) {
             1)`);
         console.log("Data successfully stored!")
     }
+};
+
+exports.workshopInProgress = function() {
+    if (inProgress)
+        return true;
+    else
+        return false;
 };
