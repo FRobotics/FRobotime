@@ -27,7 +27,8 @@ app.post('/submit', function(req, res) {
 });
 
 app.get('/update', function(req, res) {
-    return child_process.execSync('git pull').toString()
+    var update = child_process.execSync('git pull').toString()
+    return update;
 });
 
 app.get('/frobotime.html', function(req, res) {
