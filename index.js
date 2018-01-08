@@ -20,7 +20,7 @@ app.post('/submit', function(req, res) {
             db.store(req.body);
             res.sendFile(__dirname + "/success.html");
         } else {
-            return "Workshop is not in progress!";
+            res.send("Workshop is not in progress!");
         }
     }
     return;
