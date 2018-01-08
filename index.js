@@ -2,7 +2,8 @@ var express = require("express"),
     app = express(),
     bodyParser = require('body-parser'),
     path = require('path'),
-    db = require('./db.js');
+    db = require('./db.js'),
+    child_process = require('child_process');
 
 db.initialize();
 
