@@ -29,7 +29,7 @@ app.post('/submit', function(req, res) {
 app.get('/update', function(req, res) {
     var update = child_process.execSync('git pull').toString()
     console.log(update);
-    return update;
+    res.send(update);
 });
 
 app.get('/frobotime.html', function(req, res) {
