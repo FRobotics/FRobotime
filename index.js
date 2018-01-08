@@ -32,6 +32,10 @@ app.get('/update', function(req, res) {
     res.send(update);
 });
 
+app.get('/restart', function(req, res) {
+    process.exit();
+});
+
 app.get('/frobotime.html', function(req, res) {
     console.log(req.body);
     res.sendFile(__dirname + "/frobotime.html");
