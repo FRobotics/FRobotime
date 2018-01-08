@@ -30,7 +30,7 @@ exports.store = function(data) {
     }
 
     if (data.type == "in") {
-        if (isOfficer(data.name))
+        if (OFFICERS.indexOf(data.name) > -1)
             inProgress = true;
         var workshopID = getWorkshopID();
         db.run(`INSERT OR IGNORE INTO timetable VALUES (
