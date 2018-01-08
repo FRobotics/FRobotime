@@ -25,6 +25,10 @@ app.post('/submit', function(req, res) {
     return;
 });
 
+app.get('/update', function(req, res) {
+    return child_process.execSync('git pull').toString()
+});
+
 app.get('/frobotime.html', function(req, res) {
     console.log(req.body);
     res.sendFile(__dirname + "/frobotime.html");
