@@ -1,7 +1,6 @@
 var express = require("express"),
     app = express(),
     bodyParser = require('body-parser'),
-    path = require('path'),
     db = require('./db.js'),
     child_process = require('child_process');
 
@@ -26,19 +25,29 @@ app.post('/submit', function(req, res) {
     return;
 });
 
+app.post('/workshop', function(req, res) {
+    console.log(req.body);
+
+    res.send("this no work yet");
+    return;
+});
+
 app.get('/update', function(req, res) {
     var update = child_process.execSync('git pull').toString()
     console.log(update);
     res.send(update);
 });
 
-app.get('/restart', function(req, res) {
+app.get('/restart', function() {
     process.exit();
 });
 
 app.get('/frobotime.html', function(req, res) {
-    console.log(req.body);
     res.sendFile(__dirname + "/frobotime.html");
+});
+
+app.get('/workshop.html', function(req, res) {
+    res.sendFile(__dirname + "/workshop.html");
 });
 
 app.get('/data/data.json', function(req, res) {
