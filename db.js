@@ -44,16 +44,13 @@ exports.store = function(data) {
 };
 
 exports.workshopInProgress = function() {
-    if (inProgress)
-        return true;
-    else
-        return false;
+    return inProgress;
 };
 
 exports.isOfficer = function(name) {
     return OFFICERS.indexOf(name) > -1
 };
 
-exports.allOfficersOut = function() {
+exports.endWorkshop = function() {
     var workshopID = getWorkshopID();
 };
