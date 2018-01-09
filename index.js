@@ -26,6 +26,13 @@ app.post('/submit', function(req, res) {
     return;
 });
 
+app.post('/workshop', function(req, res) {
+    console.log(req.body);
+
+    res.send("this no work yet");
+    return;
+});
+
 app.get('/update', function(req, res) {
     var update = child_process.execSync('git pull').toString()
     console.log(update);
@@ -37,8 +44,11 @@ app.get('/restart', function(req, res) {
 });
 
 app.get('/frobotime.html', function(req, res) {
-    console.log(req.body);
     res.sendFile(__dirname + "/frobotime.html");
+});
+
+app.get('/workshop.html', function(req, res) {
+    res.sendFile(__dirname + "/workshop.html");
 });
 
 app.get('/data/data.json', function(req, res) {
