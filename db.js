@@ -55,5 +55,5 @@ exports.isOfficer = function(name) {
 };
 
 exports.allOfficersOut = function() {
-    var workshopID = getWorkshopID();
+    // var workshopID = this.getWorkshopID();
 };

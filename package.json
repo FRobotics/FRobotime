@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/FRobotics/FRobotime/issues"
   },
-  "homepage": "https://github.com/FRobotics/FRobotime#readme"
+  "homepage": "https://github.com/FRobotics/FRobotime#readme",
+  "devDependencies": {
+    "eslint": "^4.15.0"
+  },
+  "dependencies": {
+    "express": "^4.16.2"
+  }
 }
