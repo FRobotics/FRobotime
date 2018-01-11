@@ -15,11 +15,11 @@ app.post('/submit', function(req, res) {
     console.log(req.body);
 
     if (req.body.name && req.body.type) {
-        if (db.workshopInProgress() || db.isOfficer(req.body.name)) {
+        if (db.workshopInProgress()) {
             db.store(req.body);
             res.sendFile(__dirname + "/success.html");
         } else {
-            res.send("Workshop is not in progress!");
+            res.send("Workshop is not in progress! If you are an officer, please start the workshop!");
         }
     }
     return;
