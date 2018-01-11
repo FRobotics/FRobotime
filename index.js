@@ -19,7 +19,7 @@ app.post('/submit', function(req, res) {
             db.store(req.body);
             res.sendFile(__dirname + "/success.html");
         } else {
-            res.send("Workshop is not in progress! If you are an officer, please start the workshop!");
+            res.sendFile(__dirname + "/noworkshop.html");
         }
     }
     return;
