@@ -50,6 +50,10 @@ app.get('/workshop.html', function(req, res) {
     res.sendFile(__dirname + "/workshop.html");
 });
 
+app.get('/noworkshop.html', function(req, res) {
+    res.sendFile(__dirname + "/noworkshop.html");
+});
+
 app.get('/data/data.json', function(req, res) {
     res.sendFile(__dirname + "/data/data.json");
 });
