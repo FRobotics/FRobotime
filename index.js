@@ -42,6 +42,10 @@ app.get('/restart', function() {
     process.exit();
 });
 
+app.get('/', function(req, res) {
+    res.sendFile(__dirname + "/frobotime.html");
+});
+
 app.get('/frobotime.html', function(req, res) {
     res.sendFile(__dirname + "/frobotime.html");
 });
