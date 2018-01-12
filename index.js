@@ -15,11 +15,11 @@ app.post('/submit', function(req, res) {
     console.log(req.body);
 
     if (req.body.name && req.body.type) {
-        if (db.workshopInProgress() || db.isOfficer(req.body.name)) {
+        if (db.workshopInProgress()) {
             db.store(req.body);
             res.sendFile(__dirname + "/success.html");
         } else {
-            res.send("Workshop is not in progress!");
+            res.sendFile(__dirname + "/noworkshop.html");
         }
     }
     return;
@@ -35,12 +35,20 @@ app.get('/restart', function() {
     process.exit();
 });
 
+app.get('/', function(req, res) {
+    res.sendFile(__dirname + "/frobotime.html");
+});
+
 app.get('/frobotime.html', function(req, res) {
     res.sendFile(__dirname + "/frobotime.html");
 });
 
 app.get('/workshop.html', function(req, res) {
     res.sendFile(__dirname + "/workshop.html");
+});
+
+app.get('/noworkshop.html', function(req, res) {
+    res.sendFile(__dirname + "/noworkshop.html");
 });
 
 app.get('/data/data.json', function(req, res) {

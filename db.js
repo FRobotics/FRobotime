@@ -1,7 +1,7 @@
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('./timetable.sqlite');
-const OFFICERS = ["Michael Rossi", "Michael Cao", "Courtney Sheridan", "Matt Pekarcik", "Meg Anderson"];
 var inProgress = false;
+const password = require('fs').readFileSync('./password.txt');
 
 /**
  * @description Initializes the Database.
@@ -53,12 +53,13 @@ exports.workshopInProgress = function() {
     return inProgress;
 };
 
-exports.isOfficer = function(name) {
-    return OFFICERS.indexOf(name) > -1
+exports.isOfficer = function(pwd) {
+    if (pwd == password) return true;
+    else return password;
 };
 
 exports.endWorkshop = function() {
     if (inProgress) {
-
+        
     }
 };
