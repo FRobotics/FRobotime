@@ -1,52 +1,42 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-	
-	<title>FRobotime</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-	<link rel="stylesheet" href="main.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script>
-		$(document).ready(function () {
-			var nameList = [];
-			$.getJSON("data/data.json", function (data) {
-				nameList = data.names.split(",");
-
-				$(nameList).each(function (index, item) {
-					var option = $('<option value="' + item + '">' + item + '</option>');
-					$('#name').append(option);
-				});
-			});
-		});
-	</script>
-</head>
-
-<body>
-	<img src="logo.jpg" alt="Super Amazing FRobotics Logo">
-	<form action="http://mikecao.me:8080/submit" method="POST">
-		<h2>FRobotime</h2>
-		<br>
-
-		<div class="group">
-			<select id="name" name="name">
-				<option value="" disabled selected>Select your name</option>
-			</select>
-			<label>Name</label>
-		</div>
-
-
-		<div class="group">
-			<select id="type" name="type">
-				<option value="" disabled selected>In / Out</option>
-				<option value="in">Sign In</option>
-				<option value="out">Sign Out</option>
-			</select>
-			<label>Type</label>
-		</div>
-
-		<input type="submit" value="Submit">
-	</form>
-</body>
-
+  <head>
+    <title>FRobotime</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function () {
+      var nameList = [];
+      $.getJSON("data/data.json", function (data) {
+        nameList = data.names.split(",");
+        $(nameList).each(function (index, item) {
+          var option = $('<option value="' + item + '">' + item + '</option>');
+          $('#name').append(option);
+        });
+      });
+    });
+    </script>
+  </head>
+  <body>
+    <img src="logo.jpg" alt="Super Amazing FRobotics Logo">
+    <form action="http://mikecao.me:8080/submit" method="POST">
+      <h2>FRobotime</h2><br>
+      <div class="group">
+        <select id="name" name="name">
+          <option value="" disabled selected>Select your name</option>
+        </select>
+        <label>Name</label>
+      </div>
+      <div class="group">
+        <select id="type" name="type">
+          <option value="" disabled selected>In / Out</option>
+          <option value="in">Sign In</option>
+          <option value="out">Sign Out</option>
+        </select>
+        <label>Type</label>
+      </div>
+      <input type="submit" value="Submit">
+    </form>
+  </body>
 </html>
