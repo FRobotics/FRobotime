@@ -15,6 +15,12 @@ exports.initialize = function() {
             timestampEnd VARCHAR(100),
             inProgress BOOLEAN)`);
     });
+
+    setInterval(() => {
+        console.log(new Date().getHours() + ":" + new Date().getMinutes())
+        if (new Date().getHours() === 5 && new Date().getMinutes() == 0)
+            this.endWorkshop();
+    }, 60000)
 };
 
 exports.store = function(data) {

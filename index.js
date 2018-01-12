@@ -25,13 +25,6 @@ app.post('/submit', function(req, res) {
     return;
 });
 
-app.post('/workshop', function(req, res) {
-    console.log(req.body);
-
-    res.send("this no work yet");
-    return;
-});
-
 app.get('/update', function(req, res) {
     var update = child_process.execSync('git pull').toString()
     console.log(update);
