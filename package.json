@@ -1,0 +1,26 @@
+{
+  "name": "frobotime",
+  "version": "1.0.0",
+  "description": "FRobotics' Member Management System",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FRobotics/FRobotime.git"
+  },
+  "author": "Michael Cao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FRobotics/FRobotime/issues"
+  },
+  "homepage": "https://github.com/FRobotics/FRobotime#readme",
+  "devDependencies": {
+    "eslint": "^4.15.0"
+  },
+  "dependencies": {
+    "express": "^4.16.2",
+    "pug": "^2.0.0-rc.4"
+  }
+}
