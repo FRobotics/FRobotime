@@ -49,11 +49,11 @@ exports.store = (data) => {
     var workshop = this.getWorkshopID();
     db.run(`UPDATE timetable SET timestampEnd = "${new Date()}" WHERE name = "${data.name}" AND workshopID = "${workshop}"`);
     db.run(`UPDATE timetable SET inProgress = 0 WHERE name = "${data.name}" AND workshopID = "${workshop}"`);
-    db.all(`SELECT * FROM timetable WHERE name = "${data.name}" AND workshopID = "${workshop}"`, function(err, rows) {
+    db.all(`SELECT * FROM timetable WHERE name = "${data.name}" AND workshopID = "${workshop}"`, function (err, rows) {
       var date1 = rows[0].timestampStart,
         date2 = rows[0].timestampEnd,
         hours = Math.abs(date1 - date2) / 36e5;
-      db.run(`UPDATE timetable SET hours = ${hours + 2} WHERE name = "${data.name}" AND workshopID = "${workshop}"`);
+      db.run(`UPDATE timetable SET hours = "${hours + 2}" WHERE name = "${data.name}" AND workshopID = "${workshop}"`);
     })
     console.log(`${data.name} signed out at ${new Date()}`)
   }
@@ -91,10 +91,23 @@ exports.endWorkshop = () => {
   if (inProgress) {
     db.all(`SELECT * FROM timetable WHERE inProgress = ${1}`, function (err, rows) {
       if (err) console.log(err)
-      else if (!rows[0]) console.log('nothing found ur an idiot') 
+      else if (!rows[0]) console.log('nothing found ur an idiot')
       else {
-        console.log(rows)
-        console.log('--- ENDED WORKSHOP ' + this.getWorkshopID() + '---')
+        for (var i = 0; i < rows.length; i++) {
+          if (rows[i].workshopID == this.getWorkshopID()) {
+            var workshop = this.getWorkshopID();
+            db.run(`UPDATE timetable SET timestampEnd = "${new Date()}" WHERE name = "${rows[0].name}" AND workshopID = "${workshop}"`);
+            db.run(`UPDATE timetable SET inProgress = 0 WHERE name = "${rows[0].name}" AND workshopID = "${workshop}"`);
+            db.all(`SELECT * FROM timetable WHERE name = "${rows[0].name}" AND workshopID = "${workshop}"`, function (err, rows) {
+              var date1 = rows[0].timestampStart,
+                date2 = rows[0].timestampEnd,
+                hours = Math.abs(date1 - date2) / 36e5;
+              db.run(`UPDATE timetable SET hours = "${hours + 2}" WHERE name = "${rows[0].name}" AND workshopID = "${workshop}"`);
+            })
+          }
+        }
+        this.workshopInProgress = false;
+        console.log('--- SUCCESSFULLY ENDED WORKSHOP ' + this.getWorkshopID() + '---')
       }
     })
   }
