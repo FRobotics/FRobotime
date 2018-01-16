@@ -50,8 +50,8 @@ exports.store = (data) => {
     db.run(`UPDATE timetable SET timestampEnd = "${new Date()}" WHERE name = "${data.name}" AND workshopID = "${workshop}"`);
     db.run(`UPDATE timetable SET inProgress = 0 WHERE name = "${data.name}" AND workshopID = "${workshop}"`);
     db.all(`SELECT * FROM timetable WHERE name = "${data.name}" AND workshopID = "${workshop}"`, function (err, rows) {
-      var date1 = rows[0].timestampStart,
-        date2 = rows[0].timestampEnd,
+      var date1 = new Date(rows[0].timestampStart),
+        date2 = new Date(rows[0].timestampEnd),
         hours = (Math.abs(date1 - date2) / 36e5) + 2;
       console.log(hours)
       db.run(`UPDATE timetable SET hours = "${hours}" WHERE name = "${data.name}" AND workshopID = "${workshop}"`);
