@@ -48,11 +48,11 @@ exports.store = (data) => {
   } else if (data.type === 'out') {
     db.run(`UPDATE timetable SET timestampEnd = "${new Date()}" WHERE name = "${data.name}" AND workshopID = "${this.getWorkshopID()}"`);
     db.run(`UPDATE timetable SET inProgress = 0 WHERE name = "${data.name}" AND workshopID = "${this.getWorkshopID()}"`);
-    db.all(`SELECT ALL FROM timetable WHERE name = "${data.name}" AND workshopID = "${this.getWorkshopID()}"`, function(err, rows) {
+    db.all(`SELECT * FROM timetable WHERE name = "${data.name}" AND workshopID = "${this.getWorkshopID()}"`, function(err, rows) {
       var date1 = rows[0].timestampStart,
         date2 = rows[0].timestampEnd,
         hours = Math.abs(date1 - date2) / 36e5;
-        db.run(`UPDATE timetable SET hours = ${hours + 2} WHERE name = "${data.name}" AND workshopID = "${this.getWorkshopID()}"`);
+      db.run(`UPDATE timetable SET hours = ${hours + 2} WHERE name = "${data.name}" AND workshopID = "${this.getWorkshopID()}"`);
     })
     console.log(`${data.name} signed out at ${new Date()}`)
   }
