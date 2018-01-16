@@ -8,14 +8,14 @@ var time = null // eslint-disable-line no-unused-vars
 exports.initialize = () => {
   db.serialize(function () {
     db.run(`
-            CREATE TABLE IF NOT EXISTS timetable (
-            workshopID VARCHAR(20), 
-            name VARCHAR(100), 
-            timestampStart VARCHAR(100), 
-            timestampEnd VARCHAR(100),
-            hours VARCHAR(100),
-            inProgress BOOLEAN)
-        `)
+      CREATE TABLE IF NOT EXISTS timetable (
+      workshopID VARCHAR(20), 
+      name VARCHAR(100), 
+      timestampStart VARCHAR(100), 
+      timestampEnd VARCHAR(100),
+      hours VARCHAR(100),
+      inProgress BOOLEAN)
+    `)
   })
 
   setInterval(() => {
@@ -36,14 +36,14 @@ exports.store = (data) => {
   if (data.type === 'in') {
     var workshopID = this.getWorkshopID()
     db.run(`
-            INSERT OR IGNORE INTO timetable VALUES (
-            "${workshopID}",
-            "${data.name}",
-            "${new Date()}",
-            "0",
-            "0",
-            1)
-        `)
+      INSERT OR IGNORE INTO timetable VALUES (
+      "${workshopID}",
+      "${data.name}",
+      "${new Date()}",
+      "0",
+      "0",
+      1)
+    `)
     console.log('Data successfully stored!')
   }
 }
@@ -71,7 +71,7 @@ exports.processWorkshop = (body) => {
       if (inProgress) {
         this.endWorkshop()
         resolve(true)
-      } else { resolve(false) }
+      } else resolve(false)
     }
   })
 }
@@ -79,23 +79,12 @@ exports.processWorkshop = (body) => {
 exports.endWorkshop = () => {
   if (inProgress) {
     db.all(`SELECT * FROM timetable WHERE inProgress = ${1}`, function (err, rows) {
-      if (err) { console.log(err) } else if (!rows[0]) { console.log('nothing found ur an idiot') } else {
-        console.log(rows)
-      }
-    })
-    console.log('--- ENDED WORKSHOP ' + this.getWorkshopID() + '---')
-  }
-}
-
-exports.endWorkshop = () => {
-  if (inProgress) {
-    db.all(`SELECT * FROM timetable WHERE inProgress = ${1}`, function (err, rows) {
-      if (err) { console.log(err) } else if (!rows[0]) { console.log('nothing found ur an idiot') } else {
+      if (err) console.log(err)
+      else if (!rows[0]) console.log('nothing found ur an idiot') 
+      else {
         console.log(rows)
         console.log('--- ENDED WORKSHOP ' + this.getWorkshopID() + '---')
       }
     })
   }
 }
-
-exports.getStatus = () => { }
