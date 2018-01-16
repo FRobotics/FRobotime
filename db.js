@@ -52,8 +52,9 @@ exports.store = (data) => {
     db.all(`SELECT * FROM timetable WHERE name = "${data.name}" AND workshopID = "${workshop}"`, function (err, rows) {
       var date1 = rows[0].timestampStart,
         date2 = rows[0].timestampEnd,
-        hours = Math.abs(date1 - date2) / 36e5;
-      db.run(`UPDATE timetable SET hours = "${hours + 2}" WHERE name = "${data.name}" AND workshopID = "${workshop}"`);
+        hours = (Math.abs(date1 - date2) / 36e5) + 2;
+      console.log(hours)
+      db.run(`UPDATE timetable SET hours = "${hours}" WHERE name = "${data.name}" AND workshopID = "${workshop}"`);
     })
     console.log(`${data.name} signed out at ${new Date()}`)
   }
@@ -99,10 +100,7 @@ exports.endWorkshop = () => {
             db.run(`UPDATE timetable SET timestampEnd = "${new Date()}" WHERE name = "${rows[0].name}" AND workshopID = "${workshop}"`);
             db.run(`UPDATE timetable SET inProgress = 0 WHERE name = "${rows[0].name}" AND workshopID = "${workshop}"`);
             db.all(`SELECT * FROM timetable WHERE name = "${rows[0].name}" AND workshopID = "${workshop}"`, function (err, rows) {
-              var date1 = rows[0].timestampStart,
-                date2 = rows[0].timestampEnd,
-                hours = Math.abs(date1 - date2) / 36e5;
-              db.run(`UPDATE timetable SET hours = "${hours + 2}" WHERE name = "${rows[0].name}" AND workshopID = "${workshop}"`);
+              db.run(`UPDATE timetable SET hours = "${2}" WHERE name = "${rows[0].name}" AND workshopID = "${workshop}"`);
             })
           }
         }
