@@ -44,7 +44,10 @@ exports.store = (data) => {
       "0",
       1)
     `)
-    console.log('Data successfully stored!')
+    console.log(`${data.name} signed in at ${new Date()}`)
+  } else if (data.type === 'out') {
+    db.run(`UPDATE timetable SET timestampEnd = "${new Date()}" WHERE name = "${data.name}" AND workshopID = "${this.getWorkshopID()}"`);
+	  console.log(`${data.name} signed out at ${new Date()}`)
   }
 }
 

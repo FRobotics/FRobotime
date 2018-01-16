@@ -19,7 +19,7 @@ app.post('/submit', function (req, res) {
     if (db.workshopInProgress()) {
       console.log(req.body)
       db.store(req.body)
-      res.render('success', { title: 'Hey', message: 'Hello there!' })
+      res.render('success', { title: 'FRobotime', message: 'Success!' })
     } else {
       res.sendFile(__dirname + '/static/noworkshop.html') // eslint-disable-line no-path-concat
     }
