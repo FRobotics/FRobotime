@@ -43,6 +43,10 @@ app.post('/workshop', function (req, res) {
   }
 })
 
+app.get('/status', function (req, res) {
+  res.send(db.workshopInProgress())
+})
+
 app.get('/update', function (req, res) {
   var update = childProcess.execSync('git pull').toString()
   console.log(update)
