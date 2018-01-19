@@ -104,7 +104,7 @@ exports.endWorkshop = () => {
           }
         }
         this.workshopInProgress = false;
-        console.log('--- SUCCESSFULLY ENDED WORKSHOP ' + this.getWorkshopID() + '---')
+        console.log('--- SUCCESSFULLY ENDED WORKSHOP ' + workshopID + '---')
       }
     })
   }
