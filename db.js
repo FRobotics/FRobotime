@@ -96,9 +96,9 @@ exports.endWorkshop = () => {
       else {
         for (var i = 0; i < rows.length; i++) {
           if (rows[i].workshopID == workshopID) {
-            db.run(`UPDATE timetable SET timestampEnd = "${new Date()}" WHERE inProgress = "1" AND workshopID = "${workshopID}"`);
-            db.run(`UPDATE timetable SET hours = "${2}" WHERE inProgress = "1" AND workshopID = "${workshopID}"`);
-            db.run(`UPDATE timetable SET inProgress = 0 WHERE inProgress = "1" AND workshopID = "${workshopID}"`);
+            db.run(`UPDATE timetable SET timestampEnd = "${new Date()}" WHERE inProgress = "1"`);
+            db.run(`UPDATE timetable SET hours = "${2}" WHERE inProgress = "1"`);
+            db.run(`UPDATE timetable SET inProgress = 0 WHERE inProgress = "1"`);
           }
         }
         this.workshopInProgress = false;
