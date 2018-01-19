@@ -88,13 +88,14 @@ exports.processWorkshop = (body) => {
 }
 
 exports.endWorkshop = () => {
+  var workshopID = this.getWorkshopID();
   if (inProgress) {
     db.all(`SELECT * FROM timetable WHERE inProgress = ${1}`, function (err, rows) {
       if (err) console.log(err)
       else if (!rows[0]) console.log('nothing found ur an idiot')
       else {
         for (var i = 0; i < rows.length; i++) {
-          if (rows[i].workshopID == this.getWorkshopID()) {
+          if (rows[i].workshopID == workshopID) {
             var workshop = this.getWorkshopID();
             db.run(`UPDATE timetable SET timestampEnd = "${new Date()}" WHERE name = "${rows[0].name}" AND workshopID = "${workshop}"`);
             db.run(`UPDATE timetable SET inProgress = 0 WHERE name = "${rows[0].name}" AND workshopID = "${workshop}"`);
