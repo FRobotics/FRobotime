@@ -96,11 +96,10 @@ exports.endWorkshop = () => {
       else {
         for (var i = 0; i < rows.length; i++) {
           if (rows[i].workshopID == workshopID) {
-            var workshop = this.getWorkshopID();
-            db.run(`UPDATE timetable SET timestampEnd = "${new Date()}" WHERE name = "${rows[0].name}" AND workshopID = "${workshop}"`);
-            db.run(`UPDATE timetable SET inProgress = 0 WHERE name = "${rows[0].name}" AND workshopID = "${workshop}"`);
-            db.all(`SELECT * FROM timetable WHERE name = "${rows[0].name}" AND workshopID = "${workshop}"`, function (err, rows) {
-              db.run(`UPDATE timetable SET hours = "${2}" WHERE name = "${rows[0].name}" AND workshopID = "${workshop}"`);
+            db.run(`UPDATE timetable SET timestampEnd = "${new Date()}" WHERE name = "${rows[0].name}" AND workshopID = "${workshopID}"`);
+            db.run(`UPDATE timetable SET inProgress = 0 WHERE name = "${rows[0].name}" AND workshopID = "${workshopID}"`);
+            db.all(`SELECT * FROM timetable WHERE name = "${rows[0].name}" AND workshopID = "${workshopID}"`, function (err, rows) {
+              db.run(`UPDATE timetable SET hours = "${2}" WHERE name = "${rows[0].name}" AND workshopID = "${workshopID}"`);
             })
           }
         }
