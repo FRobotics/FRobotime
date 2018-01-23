@@ -16,7 +16,7 @@ app.set('view engine', 'pug')
 app.post('/submit', function (req, res) {
   console.log(req.body)
   if (req.body.name && req.body.type) {
-    if (db.workshopInProgress()) {
+    if (db.workshopInProgress() && db.notAlreadyIn(req.body.name)) {
       console.log(req.body)
       db.store(req.body)
       res.render('success', { title: 'FRobotime', message: 'Success!' })
@@ -53,7 +53,6 @@ app.get('/update', function (req, res) {
   res.send(update)
 })
 
-/* eslint-disable no-path-concat */
 app.get('/restart', () => process.exit())
 app.get('/', (req, res) => res.sendFile(__dirname + '/frobotime.html'))
 app.get('/frobotime.html', (req, res) => res.sendFile(__dirname + '/frobotime.html'))
@@ -63,7 +62,6 @@ app.get('/main.css', (req, res) => res.sendFile(__dirname + '/main.css'))
 app.get('/logo.jpg', (req, res) => res.sendFile(__dirname + '/logo.jpg'))
 
 app.use((req, res) => res.sendFile(__dirname + '/static/404.html'))
-/* eslint-enable no-path-concat */
 app.use('/', express.static('static'))
 
 app.listen(8080)

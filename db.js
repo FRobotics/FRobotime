@@ -4,7 +4,6 @@ const password = require('fs').readFileSync('./password.txt').toString().trim()
 var inProgress = false
 var time = null // eslint-disable-line no-unused-vars
 
-// Initialize
 exports.initialize = () => {
   db.serialize(function () {
     db.run(`
@@ -60,7 +59,7 @@ exports.store = (data) => {
 }
 
 exports.workshopInProgress = () => {
-  return inProgress
+  return inProgress;
 }
 
 exports.isOfficer = (pwd) => {
@@ -92,7 +91,7 @@ exports.endWorkshop = () => {
   if (inProgress) {
     db.all(`SELECT * FROM timetable WHERE inProgress = ${1}`, function (err, rows) {
       if (err) console.log(err)
-      else if (!rows[0]) console.log('nothing found ur an idiot')
+      else if (!rows[0]) console.log('all users signed out or none signed in')
       else {
         for (var i = 0; i < rows.length; i++) {
           if (rows[i].workshopID == workshopID) {
@@ -100,10 +99,18 @@ exports.endWorkshop = () => {
             db.run(`UPDATE timetable SET hours = "${2}" WHERE inProgress = "1"`);
             db.run(`UPDATE timetable SET inProgress = 0 WHERE inProgress = "1"`);
           }
+          console.log(`${rows[i].name} has been signed out and given 2 hours!`);
         }
         this.workshopInProgress = false;
-        console.log('--- SUCCESSFULLY ENDED WORKSHOP ' + workshopID + '---')
       }
+      console.log('--- SUCCESSFULLY ENDED WORKSHOP ' + workshopID + '---')
     })
   }
 }
+
+exports.notAlreadyIn = (name) => {
+  db.all(`SELECT * FROM timetable WHERE hours NOT = "${0}" AND name = "${name}"`, function(err, rows) {
+    if (!rows[0]) return true;
+    if (rows[0]) return false;
+  })
+};
