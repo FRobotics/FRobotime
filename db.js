@@ -109,8 +109,8 @@ exports.endWorkshop = () => {
 }
 
 exports.notAlreadyIn = (name) => {
-  db.all(`SELECT * FROM timetable WHERE hours NOT = "${0}" AND name = "${name}"`, function(err, rows) {
-    if (!rows[0]) return true;
+  db.all(`SELECT * FROM timetable WHERE inProgress = "1" AND name = "${name}"`, function(err, rows) {
+    if (!rows || !rows[0]) return true;
     if (rows[0]) return false;
   })
 };
