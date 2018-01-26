@@ -51,7 +51,9 @@ exports.store = (data) => {
     db.all(`SELECT * FROM timetable WHERE name = "${data.name}" AND workshopID = "${workshop}"`, function (err, rows) {
       var date1 = new Date(rows[0].timestampStart),
         date2 = new Date(rows[0].timestampEnd),
-        hours = Math.round(Math.abs(date1 - date2) / 36e5) + 2;
+        hours = Math.round(Math.abs(date1 - date2) / 36e5);
+      if (hours < 2)
+        hours = 2;
       db.run(`UPDATE timetable SET hours = "${hours}" WHERE name = "${data.name}" AND workshopID = "${workshop}"`);
     })
     console.log(`${data.name} signed out at ${new Date()}`)
