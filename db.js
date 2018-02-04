@@ -65,7 +65,7 @@ exports.checkHours = (name) => {
 	db.all(`SELECT * FROM timetable WHERE name = "${name}"`, function (err, rows) {
       var hours = 0;
       for(var i = 0; i < rows.length; i++) {
-        hours += rows[i].hours;
+        hours += Number(rows[i].hours);
       }
 	  resolve(hours);
     })  
