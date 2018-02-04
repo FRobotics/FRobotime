@@ -16,7 +16,11 @@ app.set('view engine', 'pug')
 app.post('/submit', function (req, res) {
   console.log(req.body)
   if (req.body.name && req.body.type) {
-    if (db.workshopInProgress()) {
+	if (req.body.type === 'hours') {
+      db.checkHours(req.body.name).then(hours => {
+        res.send(hours);
+      })
+	} else if (db.workshopInProgress()) {
       console.log(req.body)
       db.store(req.body)
       res.render('success', { title: 'FRobotime', message: 'Success!' })

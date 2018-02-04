@@ -60,6 +60,18 @@ exports.store = (data) => {
   }
 }
 
+exports.checkHours = (name) => {
+  return new Promise((resolve) => {
+	db.all(`SELECT * FROM timetable WHERE name = "${name}"`, function (err, rows) {
+      var hours = 0;
+      for(var i = 0; i < rows.length; i++) {
+        hours += rows[i].hours;
+      }
+	  resolve(hours);
+    })  
+  })
+}
+
 exports.workshopInProgress = () => {
   return inProgress;
 }
