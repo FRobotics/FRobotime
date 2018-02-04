@@ -67,7 +67,7 @@ exports.checkHours = (name) => {
       for(var i = 0; i < rows.length; i++) {
         hours += Number(rows[i].hours);
       }
-	  resolve(String(hours));
+	  resolve("You have " + hours + " hours!");
     })  
   })
 }
