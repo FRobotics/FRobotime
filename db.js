@@ -108,11 +108,9 @@ exports.endWorkshop = () => {
       else if (!rows[0]) console.log('all users signed out or none signed in')
       else {
         for (var i = 0; i < rows.length; i++) {
-          if (rows[i].workshopID == workshopID) {
-            db.run(`UPDATE timetable SET timestampEnd = "${new Date()}" WHERE inProgress = "1"`);
-            db.run(`UPDATE timetable SET hours = "${2}" WHERE inProgress = "1"`);
-            db.run(`UPDATE timetable SET inProgress = 0 WHERE inProgress = "1"`);
-          }
+          db.run(`UPDATE timetable SET timestampEnd = "${new Date()}" WHERE inProgress = "1"`);
+          db.run(`UPDATE timetable SET hours = "${2}" WHERE inProgress = "1"`);
+          db.run(`UPDATE timetable SET inProgress = 0 WHERE inProgress = "1"`);
           console.log(`${rows[i].name} has been signed out and given 2 hours!`);
         }
         this.workshopInProgress = false;
