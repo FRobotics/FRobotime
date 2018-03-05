@@ -63,7 +63,7 @@ app.get('/frobotime.html', (req, res) => res.sendFile(__dirname + '/frobotime.ht
 app.get('/workshop.html', (req, res) => res.sendFile(__dirname + '/workshop.html'))
 app.get('/data/data.json', (req, res) => res.sendFile(__dirname + '/data/data.json'))
 app.get('/main.css', (req, res) => res.sendFile(__dirname + '/main.css'))
-app.get('/logo.jpg', (req, res) => res.sendFile(__dirname + '/logo.jpg'))
+app.get('/logo.png', (req, res) => res.sendFile(__dirname + '/logo.png'))
 
 app.use((req, res) => res.sendFile(__dirname + '/static/404.html'))
 app.use('/', express.static('static'))
