@@ -132,7 +132,7 @@ exports.getTotalHours = () => {
         }
         results += students[i] + ": " + hours + "\n"
       })
+      if(i == students.length - 1) resolve(results);
     }
-    resolve(results);
   })
 }
