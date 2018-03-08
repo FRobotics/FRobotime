@@ -3,6 +3,7 @@ const db = new sqlite3.Database('./timetable.sqlite')
 const password = require('fs').readFileSync('./password.txt').toString().trim()
 var inProgress = false
 var time = null // eslint-disable-line no-unused-vars
+var students = require('./data/data.json').names.split(',');
 
 exports.initialize = () => {
   db.serialize(function () {
@@ -62,13 +63,13 @@ exports.store = (data) => {
 
 exports.checkHours = (name) => {
   return new Promise((resolve) => {
-	db.all(`SELECT * FROM timetable WHERE name = "${name}"`, function (err, rows) {
+    db.all(`SELECT * FROM timetable WHERE name = "${name}"`, function (err, rows) {
       var hours = 0;
-      for(var i = 0; i < rows.length; i++) {
+      for (var i = 0; i < rows.length; i++) {
         hours += Number(rows[i].hours);
       }
-	  resolve("You have " + hours + " hours!");
-    })  
+      resolve("You have " + hours + " hours!");
+    })
   })
 }
 
@@ -120,3 +121,18 @@ exports.endWorkshop = () => {
   }
 }
 
+exports.getTotalHours = () => {
+  return new Promise((resolve) => {
+    var results = "";
+    for (var i = 0; i < students.length; i++) {
+      db.all(`SELECT * FROM timetable WHERE name = "${students[i]}"`, function (err, rows) {
+        var hours = 0;
+        for (var i = 0; i < rows.length; i++) {
+          hours += Number(rows[i].hours);
+        }
+        results += students[i] + ": " + hours + "\n"
+      })
+    }
+    resolve(results);
+  })
+}

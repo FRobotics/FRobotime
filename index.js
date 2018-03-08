@@ -47,6 +47,19 @@ app.post('/workshop', function (req, res) {
   }
 })
 
+app.post('/admin', function (req, res) {
+  console.log(req.body)
+  if (req.body.type && req.body.password) {
+    if (db.isOfficer(req.body.password)) {
+      db.getTotalHours().then(results => {
+        res.send(results);
+      })
+    } else {
+      res.send('Incorrect Password!')
+    }
+  }
+})
+
 app.get('/status', function (req, res) {
   res.send(db.workshopInProgress())
 })
