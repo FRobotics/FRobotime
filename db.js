@@ -68,7 +68,7 @@ exports.checkHours = (name) => {
       for (var i = 0; i < rows.length; i++) {
         hours += Number(rows[i].hours);
       }
-      resolve("You have " + hours + " hours!");
+      resolve(name + ": " + hours);
     })
   })
 }
@@ -125,13 +125,8 @@ exports.getTotalHours = () => {
   return new Promise((resolve) => {
     var results = "";
     for (var i = 0; i < students.length; i++) {
-      db.all(`SELECT * FROM timetable WHERE name = "${students[i]}"`, function (err, rows) {
-        var hours = 0;
-        for (var i = 0; i < rows.length; i++) {
-          hours += Number(rows[i].hours);
-        }
-        results += students[i] + ": " + hours + "\n"
-      })
+      var hours = await this.checkHours(students[i]);
+      results += students[i] + ": " + hours + "\n"
       if(i == students.length - 1) resolve(results);
     }
   })
