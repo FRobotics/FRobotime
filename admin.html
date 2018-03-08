@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FRobotime Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <img src="logo.png" alt="Super Amazing FRobotics Logo">
+    <form action="/admin" method="POST">
+      <h2>Admin Panel</h2>
+      <br>
+      <div class="group">
+        <select id="type" name="type">
+          <option value="" disabled selected>Choose an option...</option>
+          <option value="total">Total Hours</option>
+        </select>
+        <label>Type</label>
+      </div>
+      <div class="group">
+        <input type="password" name="password">
+        <label>Password</label>
+      </div>
+      <input type="submit" value="Submit">
+    </form>
+  </body>
+</html>
