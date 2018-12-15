@@ -6,11 +6,11 @@
     <link rel="stylesheet" href="main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
-    $(document).ready(function () {
+    $(document).ready(() => {
       var nameList = [];
-      $.getJSON("data/data.json", function (data) {
+      $.getJSON("data/data.json", (data) => {
         nameList = data.names.split(",");
-        $(nameList).each(function (index, item) {
+        $(nameList).each((index, item) => {
           var option = $('<option value="' + item + '">' + item + '</option>');
           $('#name').append(option);
         });
@@ -20,7 +20,7 @@
   </head>
   <body>
     <img src="logo.png" alt="Super Amazing FRobotics Logo">
-    <form action="http://mikecao.me:8080/submit" method="POST">
+    <form action="http://127.0.0.1:8080/submit" method="POST">
       <h2>FRobotime</h2><br>
       <div class="group">
         <select id="name" name="name">
