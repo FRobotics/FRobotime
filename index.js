@@ -1,17 +1,15 @@
-process.chdir(__dirname)
-const fs = require('fs')
-const express = require('express')
-const app = express()
+process.chdir(__dirname); const fs = require('fs')
+const express = require('express'); const app = express()
 const bodyParser = require('body-parser')
-const db = require('./db.js')
+const db = require('./db.js'); db.initialize()
 const childProcess = require('child_process')
 
-db.initialize()
 
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({
   extended: true
 }))
+
 app.set('views', './views')
 app.set('view engine', 'pug')
 
@@ -72,6 +70,8 @@ app.get('/update', (req, res) => {
   res.send(update)
 })
 
+app.get('/restart', () => process.exit())
+
 /**
  * Lists the directories in a directory.
  * @param {string} dir The directory that you want to get a list of directories from.
@@ -101,14 +101,19 @@ var htmlPath = path.join(__dirname, './src/html')
 var ht = (i) => path.join(htmlPath, i)
 
 app.get('/', (req, res) => res.sendFile(ht('frobotime.html')))
-app.use((req, res) => res.sendFile(ht('404.html')))
-app.get('/restart', () => process.exit())
 
 listDirs('src').forEach(d => {
-  listFiles(path.join(process.cwd(), `./src/${d}`)).forEach((f) => {
-    app.use(`/${f}`, (req, res) => res.sendFile(ht(f)))
-    console.log(`/${f}: ${path.join(htmlPath, f)}`)
+  listFiles(path.join(process.cwd(), `src/${d}`)).forEach((f) => {
+    var fn = f.split('.')
+    if (fn[1] === 'html') {
+      app.use(`/${fn[0]}`, (req, res) => res.sendFile(path.join(process.cwd(), `src/${d}/${f}`)))
+      app.use(`/${f}`, (req, res) => res.redirect(`/${fn[0]}`))
+    } else {
+      app.use(`/${f}`, (req, res) => res.sendFile(path.join(process.cwd(), `src/${d}/${f}`)))
+    }
+    console.log(`/${f}: ${path.join(`./src/${d}`, f)}`)
   })
 })
 
+app.use((req, res) => res.sendFile(ht('404.html')))
 app.listen(8080)
