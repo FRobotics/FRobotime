@@ -3,15 +3,15 @@
 
 <head>
   <title>FRobotime</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" href="main.css">
   <link rel="stylesheet" href="button.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script>
     $(document).ready(() => {
       $.getJSON('members.json', (data) => {
         $(data).each((index, m) => {
-          $('#name').append(`<option value="${m.lastname}">${m.firstname} ${m.lastname}</option>`)
+          $('#name').append(`<option value="${m.lastname}${m.firstname}">(${m.position ? m.position : 'N/A'}) ${m.firstname} ${m.lastname}</option>`)
         })
       })
     })
