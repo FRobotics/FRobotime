@@ -1,6 +1,6 @@
 process.chdir(__dirname)
 const sqlite3 = require('sqlite3').verbose()
-const db = new sqlite3.Database('./data/database.sqlite')
+const db = new sqlite3.Database('./src/data/database.sqlite')
 
 exports.initialize = () => {
   db.serialize(() => {

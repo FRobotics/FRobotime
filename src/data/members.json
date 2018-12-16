@@ -1,178 +1,222 @@
 [
   {
     "firstname": "Adam",
-    "lastname": "Dauby"
+    "lastname": "Dauby",
+    "position": "Programming"
   },
   {
     "firstname": "Ana",
-    "lastname": "Lucci"
+    "lastname": "Lucci",
+    "position": ""
   },
   {
     "firstname": "Andrew",
-    "lastname": "Bonace"
+    "lastname": "Bonace",
+    "position": "Programming"
   },
   {
     "firstname": "Annika",
-    "lastname": "Behnke"
+    "lastname": "Behnke",
+    "position": ""
   },
   {
     "firstname": "Adele",
-    "lastname": "Swecker"
+    "lastname": "Swecker",
+    "position": ""
   },
   {
     "firstname": "Austin",
-    "lastname": "Musto"
+    "lastname": "Musto",
+    "position": "Build"
   },
   {
     "firstname": "Benjamin",
-    "lastname": "Fabian"
+    "lastname": "Fabian",
+    "position": "Build"
   },
   {
     "firstname": "Braiden",
-    "lastname": "Stroba"
+    "lastname": "Stroba",
+    "position": ""
   },
   {
     "firstname": "Brooke",
-    "lastname": "Sherman"
+    "lastname": "Sherman",
+    "position": ""
   },
   {
     "firstname": "Bryan",
-    "lastname": "McShea"
+    "lastname": "McShea",
+    "position": "Programming"
   },
   {
     "firstname": "CJ",
-    "lastname": "Ciecierski"
+    "lastname": "Ciecierski",
+    "position": ""
   },
   {
     "firstname": "Courtney",
-    "lastname": "Sheridan"
+    "lastname": "Sheridan",
+    "position": "Build"
   },
   {
     "firstname": "Dana",
-    "lastname": "Lynch"
+    "lastname": "Lynch",
+    "position": "Programming"
   },
   {
     "firstname": "Eric",
-    "lastname": "Huth"
+    "lastname": "Huth",
+    "position": "Build"
   },
   {
     "firstname": "Ethan",
-    "lastname": "Hargrove"
+    "lastname": "Hargrove",
+    "position": "Programming"
   },
   {
     "firstname": "Gage",
-    "lastname": "Pahlman"
+    "lastname": "Pahlman",
+    "position": "Wiring"
   },
   {
     "firstname": "Gregory",
-    "lastname": "Sisco"
+    "lastname": "Sisco",
+    "position": ""
   },
   {
     "firstname": "Heather",
-    "lastname": "Ciaramitaro"
+    "lastname": "Ciaramitaro",
+    "position": ""
   },
   {
     "firstname": "Ian",
-    "lastname": "Sunny"
+    "lastname": "Sunny",
+    "position": ""
   },
   {
     "firstname": "Jarrett",
-    "lastname": "Aiken"
+    "lastname": "Aiken",
+    "position": "Programming"
   },
   {
     "firstname": "John",
-    "lastname": "White"
+    "lastname": "White",
+    "position": ""
   },
   {
     "firstname": "Jonathan",
-    "lastname": "Vilsack"
+    "lastname": "Vilsack",
+    "position": ""
   },
   {
     "firstname": "Julia",
-    "lastname": "Perry"
+    "lastname": "Perry",
+    "position": ""
   },
   {
     "firstname": "Levi",
-    "lastname": "Eckman"
+    "lastname": "Eckman",
+    "position": "Build"
   },
   {
     "firstname": "Liam",
-    "lastname": "Novak"
+    "lastname": "Novak",
+    "position": "Programming"
   },
   {
     "firstname": "Luke",
-    "lastname": "Feisullin"
+    "lastname": "Feisullin",
+    "position": ""
   },
   {
     "firstname": "Manali",
-    "lastname": "Badwe"
+    "lastname": "Badwe",
+    "position": ""
   },
   {
     "firstname": "Matthew",
-    "lastname": "Pekarcik"
+    "lastname": "Pekarcik",
+    "position": ""
   },
   {
     "firstname": "Max",
-    "lastname": "Wang"
+    "lastname": "Wang",
+    "position": "Programming"
   },
   {
     "firstname": "McCain",
-    "lastname": "Varley"
+    "lastname": "Varley",
+    "position": "Build"
   },
   {
     "firstname": "Meg",
-    "lastname": "Anderson"
+    "lastname": "Anderson",
+    "position": "Build"
   },
   {
     "firstname": "Michael",
-    "lastname": "Cao"
+    "lastname": "Cao",
+    "position": "Programming"
   },
   {
     "firstname": "Michael",
-    "lastname": "Rossi"
+    "lastname": "Rossi",
+    "position": "Build"
   },
   {
     "firstname": "Obaida",
-    "lastname": "Akhrass"
+    "lastname": "Akhrass",
+    "position": "Programming"
   },
   {
     "firstname": "Piper",
-    "lastname": "Toto"
+    "lastname": "Toto",
+    "position": ""
   },
   {
     "firstname": "Ryan",
-    "lastname": "Lindeman"
+    "lastname": "Lindeman",
+    "position": ""
   },
   {
     "firstname": "Sam",
-    "lastname": "Dauby"
+    "lastname": "Dauby",
+    "position": "Build"
   },
   {
     "firstname": "Shrey",
-    "lastname": "Ramesh"
+    "lastname": "Ramesh",
+    "position": "Programming"
   },
   {
     "firstname": "Stephen",
-    "lastname": "Kozuch"
+    "lastname": "Kozuch",
+    "position": ""
   },
   {
     "firstname": "Stephen",
-    "lastname": "Merante"
+    "lastname": "Merante",
+    "position": ""
   },
   {
     "firstname": "Tina",
-    "lastname": "Henninger"
+    "lastname": "Henninger",
+    "position": "Build"
   },
   {
     "firstname": "Trevor",
-    "lastname": "McLeigh"
+    "lastname": "McLeigh",
+    "position": "Wiring"
   },
   {
     "firstname": "Vineet",
-    "lastname": "Madduru"
+    "lastname": "Madduru",
+    "position": ""
   },
   {
     "firstname": "Yousef",
-    "lastname": "Yaseen"
+    "lastname": "Yaseen",
+    "position": ""
   }
 ]
