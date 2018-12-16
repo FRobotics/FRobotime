@@ -17,9 +17,9 @@ body {
   text-align: center;
 }
 
-.group { 
-  position:relative; 
-  margin-bottom:45px; 
+.group {
+  position:relative;
+  margin-bottom:45px;
 }
 
 input {
@@ -29,17 +29,19 @@ input {
   border:none;
 }
 
-/* LABEL ======================================= */
+/* **************************************************************************************************** *\
+LABEL
+\* **************************************************************************************************** */
 label {
-  color:#999; 
+  color:#999;
   font-size:18px;
   font-weight:normal;
   position:absolute;
   pointer-events:none;
   left:5px;
   top:10px;
-  transition:0.2s ease all; 
-  -moz-transition:0.2s ease all; 
+  transition:0.2s ease all;
+  -moz-transition:0.2s ease all;
   -webkit-transition:0.2s ease all;
 }
 

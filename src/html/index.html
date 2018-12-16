@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>FRobotime</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="button.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(() => {
+      $.getJSON("data/members.json", (data) => {
+        data.each(m => {
+          $('#name').append(`<option value="${m.lastname}${m.firstname}">${m.firstname} ${m.lastname}</option>`)
+        })
+      })
+    })
+  </script>
+</head>
+
+<body>
+  <img src="logo.png" alt="Super Amazing FRobotics Logo">
+  <form action="http://127.0.0.1:8080/submit" method="POST">
+    <h2>FRobotime</h2><br>
+    <div class="group">
+      <select id="name" name="name">
+        <option value="" disabled selected>Select your name</option>
+      </select>
+      <label>Name</label>
+    </div>
+    <div class="group">
+      <select id="type" name="type">
+        <option value="" disabled selected>In / Out</option>
+        <option value="login">Sign In</option>
+        <option value="logout">Sign Out</option>
+        <option value="hours">Check Hours</option>
+      </select>
+      <label>Type</label>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+</body>
+
+</html>
