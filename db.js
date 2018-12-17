@@ -3,7 +3,7 @@ const sqlite3 = require('sqlite3').verbose()
 const db = new sqlite3.Database('./src/data/database.sqlite')
 const { oneLine } = require('common-tags')
 const moment = require('moment')
-require('moment-duration')
+require('moment-duration-format')
 
 exports.initialize = () => {
   db.serialize(() => {

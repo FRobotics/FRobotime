@@ -3,7 +3,7 @@ dependencies:
   common-tags: 1.8.0
   express: 4.16.4
   moment: 2.23.0
-  moment-duration: 0.0.6
+  moment-duration-format: 2.2.2
   sqlite3: 4.0.4
 devDependencies:
   snazzy: 8.0.0
@@ -1377,16 +1377,10 @@ packages:
     hasBin: true
     resolution:
       integrity: sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM=
-  /moment-duration/0.0.6:
-    dependencies:
-      moment: 2.0.0
+  /moment-duration-format/2.2.2:
     dev: false
     resolution:
-      integrity: sha1-ZTF+itIaB9FCKRuBgy5tLkrRQtY=
-  /moment/2.0.0:
-    dev: false
-    resolution:
-      integrity: sha1-K7xbRMMhg3aTq278rb1G7ZRiEf4=
+      integrity: sha1-uVdhLeJgFsmtnrYIfAVFc+USd3k=
   /moment/2.23.0:
     dev: false
     resolution:
@@ -2359,7 +2353,7 @@ specifiers:
   common-tags: ^1.8.0
   express: ^4.16.2
   moment: ^2.23.0
-  moment-duration: ^0.0.6
+  moment-duration-format: ^2.2.2
   snazzy: ^8.0.0
   sqlite3: ^4.0.4
   standard: ^12.0.1
