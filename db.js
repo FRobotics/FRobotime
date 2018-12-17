@@ -1,10 +1,14 @@
 process.chdir(__dirname)
 const sqlite3 = require('sqlite3').verbose()
 const db = new sqlite3.Database('./src/data/database.sqlite')
+const { oneLine } = require('common-tags')
+const moment = require('moment')
+require('moment-duration')
 
 exports.initialize = () => {
   db.serialize(() => {
     db.run(`CREATE TABLE IF NOT EXISTS members (
+      id INTEGER PRIMARY KEY
       firstName TEXT,
       lastName TEXT,
       position TEXT,
@@ -18,15 +22,18 @@ exports.initialize = () => {
 
 exports.login = (data) => {
   // Create the member in the database if they don't exist.
-  db.run(`INSERT OR IGNORE INTO members VALUES (
-    "${data.firstname}",
-    "${data.lastname}",
-    "${data.position}",
-    ${data.officer},
-    0,
-    ${new Date()},
-    0
-  )`)
+  db.run(`
+    INSERT OR IGNORE INTO members VALUES (
+      ${Number(Math.random().toString().slice(2, 11))},
+      "${data.firstname}",
+      "${data.lastname}",
+      "${data.position}",
+      ${data.officer},
+      0,
+      ${new Date()},
+      0
+    )
+  `)
   console.log(`${data.lastname} ${data.firstname} signed in at ${new Date()}`)
 }
 

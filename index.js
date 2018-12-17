@@ -65,7 +65,7 @@ client.get('/request', async (req, res) => {
     res.send(`<script>alert('hi')</script>`)
     // res.send(`<script>alert('${req.body.firstname}, you have ${await db.getHours(req.body.firstname, req.body.lastname)}')</script>`)
   } else if (await db.workshopInProgress()) {
-    if (req.body.type === 'login') {} else if (req.body.type === 'logout') {}
+    if (req.body.type === 'login') { } else if (req.body.type === 'logout') { }
   }
 })
 
