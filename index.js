@@ -60,11 +60,12 @@ var ht = (i) => path.join(htmlPath, i)
 client.get('/', (req, res) => res.sendFile(ht('index.html')))
 
 listDirs('src').forEach(d => {
+  console.log(`Loading ${d}...`)
   listFiles(path.join(process.cwd(), `src/${d}`)).forEach((f) => {
     var fn = f.split('.')
     client.use(fn[1] === 'html' ? `/${fn[0]}` : `/${f}`, (req, res) => res.sendFile(path.join(process.cwd(), `src/${d}/${f}`)))
     if (fn[1] === 'html') client.use(`/${f}`, (req, res) => res.redirect(`/${fn[0]}`))
-    console.log(`${d} | ${f}`)
+    console.log(`  ${f}`)
   })
 })
 
