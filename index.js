@@ -54,7 +54,6 @@ client.use(bodyParser.urlencoded({ extended: true }))
 //   }
 // })
 
-
 var htmlPath = path.join(process.cwd(), './src/html')
 var ht = (i) => path.join(htmlPath, i)
 
