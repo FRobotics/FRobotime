@@ -11,7 +11,7 @@
     $(document).ready(() => {
       $.getJSON('members.json', (data) => {
         $(data).each((index, m) => {
-          $('#name').append(`<option value="${m.lastname}${m.firstname}">(${m.position ? m.position : 'N/A'}) ${m.firstname} ${m.lastname}</option>`)
+          $('#name').append(`<option value="${m}">(${m.position ? m.position : 'N/A'}) ${m.firstname} ${m.lastname}</option>`)
         })
       })
     })
@@ -20,17 +20,17 @@
 
 <body>
   <img src="logo.png" alt="FRobotics Logo">
-  <form action="http://127.0.0.1:8080/submit" method="POST">
+  <form action="/request" method="POST" id='memberRequest' name='memberRequest' onsubmit="alert('Success!'); return false"> <!-- Yes, I know this is a cheap way of preventing a redirect. -->
     <h2>FRobotime</h2><br>
     <div class="group">
       <select id="name" name="name">
-        <option value="" disabled selected>Select Your Name</option>
+        <option disabled selected>Select Your Name</option>
       </select>
       <label>Name</label>
     </div>
     <div class="group">
       <select id="type" name="type">
-        <option value="" disabled selected>Option</option>
+        <option disabled selected>Option</option>
         <option value="login">Log In</option>
         <option value="logout">Logout Out</option>
         <option value="hours">Check Hours</option>

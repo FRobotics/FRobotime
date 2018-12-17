@@ -57,9 +57,20 @@ client.use(bodyParser.urlencoded({ extended: true }))
 var htmlPath = path.join(process.cwd(), './src/html')
 var ht = (i) => path.join(htmlPath, i)
 
-client.get('/', (req, res) => res.sendFile(ht('index.html')))
+client.get('/request', async (req, res) => {
+  console.log(`Incoming Request: ${req.body}`)
+  if (!(req.body.name && req.body.type)) return res.sendFile(ht('404.html'))
 
-listDirs('src').forEach(d => {
+  if (req.body.type === 'hours') { // Hours
+    res.send(`<script>alert('hi')</script>`)
+    // res.send(`<script>alert('${req.body.firstname}, you have ${await db.getHours(req.body.firstname, req.body.lastname)}')</script>`)
+  } else if (await db.workshopInProgress()) {
+    if (req.body.type === 'login') {} else if (req.body.type === 'logout') {}
+  }
+})
+
+client.get('/', (req, res) => res.sendFile(ht('index.html'))) // Load the index file.
+listDirs('src').forEach(d => { // Dynamically load all files.
   console.log(`Loading ${d}...`)
   listFiles(path.join(process.cwd(), `src/${d}`)).forEach((f) => {
     var fn = f.split('.')
@@ -69,5 +80,5 @@ listDirs('src').forEach(d => {
   })
 })
 
-client.use((req, res) => res.sendFile(ht('404.html')))
+client.use((req, res) => res.sendFile(ht('404.html'))) // 404 for invalid requests.
 client.listen(8080)
