@@ -1,133 +1,44 @@
+process.chdir(__dirname)
 const sqlite3 = require('sqlite3').verbose()
-const db = new sqlite3.Database('./timetable.sqlite')
-const password = require('fs').readFileSync('./password.txt').toString().trim()
-var inProgress = false
-var time = null // eslint-disable-line no-unused-vars
-var students = require('./data/data.json').names.split(',');
+const db = new sqlite3.Database('./src/data/database.sqlite')
 
 exports.initialize = () => {
-  db.serialize(function () {
-    db.run(`
-      CREATE TABLE IF NOT EXISTS timetable (
-      workshopID VARCHAR(20), 
-      name VARCHAR(100), 
-      timestampStart VARCHAR(100), 
-      timestampEnd VARCHAR(100),
-      hours VARCHAR(100),
-      inProgress BOOLEAN)
-    `)
-  })
-
-  setInterval(() => {
-    if (new Date().getHours() === 2 && new Date().getMinutes() === 0) { this.endWorkshop() }
-  }, 60000)
-}
-
-exports.getWorkshopID = () => {
-  var year = String(new Date().getYear() + 1900)
-  var month = String(new Date().getMonth() + 1)
-  var day = String(new Date().getDate())
-  if (month.length < 2) { month = 0 + month }
-  if (day.length < 2) { day = 0 + day }
-  return year + month + day
-}
-
-exports.store = (data) => {
-  if (data.type === 'in') {
-    var workshopID = this.getWorkshopID()
-    db.run(`
-      INSERT OR IGNORE INTO timetable VALUES (
-      "${workshopID}",
-      "${data.name}",
-      "${new Date()}",
-      "0",
-      "0",
-      1)
-    `)
-    console.log(`${data.name} signed in at ${new Date()}`)
-  } else if (data.type === 'out') {
-    var workshop = this.getWorkshopID();
-    db.run(`UPDATE timetable SET timestampEnd = "${new Date()}" WHERE name = "${data.name}" AND workshopID = "${workshop}"`);
-    db.run(`UPDATE timetable SET inProgress = 0 WHERE name = "${data.name}" AND workshopID = "${workshop}"`);
-    db.all(`SELECT * FROM timetable WHERE name = "${data.name}" AND workshopID = "${workshop}"`, function (err, rows) {
-      var date1 = new Date(rows[0].timestampStart),
-        date2 = new Date(rows[0].timestampEnd),
-        hours = Math.round(Math.abs(date1 - date2) / 36e5);
-      if (hours < 2)
-        hours = 2;
-      db.run(`UPDATE timetable SET hours = "${hours}" WHERE name = "${data.name}" AND workshopID = "${workshop}"`);
-    })
-    console.log(`${data.name} signed out at ${new Date()}`)
-  }
-}
-
-exports.checkHours = (name) => {
-  return new Promise((resolve) => {
-    db.all(`SELECT * FROM timetable WHERE name = "${name}"`, function (err, rows) {
-      var hours = 0;
-      for (var i = 0; i < rows.length; i++) {
-        hours += Number(rows[i].hours);
-      }
-      resolve(name + ": " + hours);
-    })
+  db.serialize(() => {
+    db.run(`CREATE TABLE IF NOT EXISTS members (
+      firstName TEXT,
+      lastName TEXT,
+      position TEXT,
+      officer BOOLEAN,
+      hours INTEGER,
+      lastLogin TEXT,
+      lastLogout TEXT
+    )`)
   })
 }
 
-exports.workshopInProgress = () => {
-  return inProgress;
+exports.login = (data) => {
+  // Create the member in the database if they don't exist.
+  db.run(`INSERT OR IGNORE INTO members VALUES (
+    "${data.firstname}",
+    "${data.lastname}",
+    "${data.position}",
+    ${data.officer},
+    0,
+    ${new Date()},
+    0
+  )`)
+  console.log(`${data.lastname} ${data.firstname} signed in at ${new Date()}`)
 }
 
-exports.isOfficer = (pwd) => {
-  if (password === pwd) return true
-  else return false
-}
+exports.logout = async (data) => {
+  // Set the users's last logout.
+  await db.run(`UPDATE members SET lastLogout = "${new Date()}" WHERE firstName = "${data.firstname}" AND lastName = "${data.lastname}"`)
 
-exports.processWorkshop = (body) => {
-  return new Promise((resolve) => {
-    if (body.type === 'start') {
-      if (!inProgress) {
-        time = new Date()
-        inProgress = true
-        resolve(true)
-      } else {
-        resolve(false)
-      }
-    } else if (body.type === 'end') {
-      if (inProgress) {
-        this.endWorkshop()
-        resolve(true)
-      } else resolve(false)
-    }
-  })
-}
-
-exports.endWorkshop = () => {
-  var workshopID = this.getWorkshopID();
-  if (inProgress) {
-    db.all(`SELECT * FROM timetable WHERE inProgress = ${1}`, function (err, rows) {
-      if (err) console.log(err)
-      else if (!rows[0]) console.log('all users signed out or none signed in')
-      else {
-        for (var i = 0; i < rows.length; i++) {
-          db.run(`UPDATE timetable SET timestampEnd = "${new Date()}" WHERE inProgress = "1"`);
-          db.run(`UPDATE timetable SET hours = "${2}" WHERE inProgress = "1"`);
-          db.run(`UPDATE timetable SET inProgress = 0 WHERE inProgress = "1"`);
-          console.log(`${rows[i].name} has been signed out and given 2 hours!`);
-        }
-        this.workshopInProgress = false;
-      }
-      console.log('--- SUCCESSFULLY ENDED WORKSHOP ' + workshopID + '---')
-    })
-  }
-}
-
-exports.getTotalHours = () => {
-  return new Promise((resolve) => {
-    var results = "";
-    for (var i = 0; i < students.length; i++) {
-      var hours = await this.checkHours(students[i]);
-      results += students[i] + ": " + hours + "\n"
-      if(i == students.length - 1) resolve(results);
-    }
+  // Set the user's new hours.
+  db.all(`SELECT * FROM members WHERE firstName = "${data.firstname}" AND lastName = "${data.lastname}"`, (f, rows) => {
+    rows = rows[0]
+    var hours = rows.hours + Math.round(Math.abs(new Date(rows.lastLogin) - new Date(rows.lastLogout)) / 36e5)
+    db.run(`UPDATE members SET hours = "${hours}" WHERE firstName = "${data.firstname}" AND lastName = "${data.lastname}"`)
+    console.log(`${data.lastname} ${data.firstname} signed out at ${new Date()}`)
   })
 }

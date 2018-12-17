@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>FRobotime</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="button.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(() => {
+      $.getJSON('members.json', (data) => {
+        $(data).each((index, m) => {
+          $('#name').append(`<option value="${m}">(${m.position ? m.position : 'N/A'}) ${m.firstname} ${m.lastname}</option>`)
+        })
+      })
+    })
+  </script>
+</head>
+
+<body>
+  <img src="logo.png" alt="FRobotics Logo">
+  <form action="/request" method="POST" id='memberRequest' name='memberRequest' onsubmit="alert('Success!'); return false"> <!-- Yes, I know this is a cheap way of preventing a redirect. -->
+    <h2>FRobotime</h2><br>
+    <div class="group">
+      <select id="name" name="name">
+        <option disabled selected>Select Your Name</option>
+      </select>
+      <label>Name</label>
+    </div>
+    <div class="group">
+      <select id="type" name="type">
+        <option disabled selected>Option</option>
+        <option value="login">Log In</option>
+        <option value="logout">Logout Out</option>
+        <option value="hours">Check Hours</option>
+        <option value="dashboard">Dashboard</option>
+      </select>
+      <label>Type</label>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+</body>
+
+</html>
