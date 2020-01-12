@@ -1,14 +1,14 @@
 process.chdir(__dirname)
 const sqlite3 = require('sqlite3').verbose()
 const db = new sqlite3.Database('./src/data/database.sqlite')
-const { oneLine } = require('common-tags')
-const moment = require('moment')
+// const { oneLine } = require('common-tags')
+// const moment = require('moment')
 require('moment-duration-format')
 
 exports.initialize = () => {
   db.serialize(() => {
     db.run(`CREATE TABLE IF NOT EXISTS members (
-      id INTEGER PRIMARY KEY
+      id INTEGER PRIMARY KEY,
       firstName TEXT,
       lastName TEXT,
       position TEXT,

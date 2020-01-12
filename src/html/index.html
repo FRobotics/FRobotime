@@ -11,8 +11,25 @@
     $(document).ready(() => {
       $.getJSON('members.json', (data) => {
         $(data).each((index, m) => {
-          $('#name').append(`<option value="${m}">(${m.position ? m.position : 'N/A'}) ${m.firstname} ${m.lastname}</option>`)
+          $('#name').append(`<option value="${m}">${m.firstname} ${m.lastname} [${m.position ? m.position : 'N/A'}]</option>`)
         })
+      })
+
+      $("#memberRequest").click(() => {
+        $.ajax({
+          type: "POST",
+          url: `${base_url}/request`,
+          data: {
+            member: $("#name").val(),
+            type: $("#type").val()
+          },
+          dataType: "object",
+          cache: false,
+          success: (data) => {
+            alert('hello')
+          }
+        })
+        return false
       })
     })
   </script>
@@ -20,7 +37,7 @@
 
 <body>
   <img src="logo.png" alt="FRobotics Logo">
-  <form action="/request" method="POST" id='memberRequest' name='memberRequest' onsubmit="alert('Success!'); return false">
+  <form id='memberRequest' name='memberRequest'>
     <!-- Yes, I know this is a cheap way of preventing a redirect. -->
     <h2>FRobotime</h2><br>
     <div class="group">

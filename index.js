@@ -62,7 +62,7 @@ client.get('/request', async (req, res) => {
   if (!(req.body.name && req.body.type)) return res.sendFile(ht('404.html'))
 
   if (req.body.type === 'hours') { // Hours
-    res.send(`<script>alert('hi')</script>`)
+    res.send('<script>alert(\'hi\')</script>')
     // res.send(`<script>alert('${req.body.firstname}, you have ${await db.getHours(req.body.firstname, req.body.lastname)}')</script>`)
   } else if (await db.workshopInProgress()) {
     if (req.body.type === 'login') { } else if (req.body.type === 'logout') { }

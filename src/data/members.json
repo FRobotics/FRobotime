@@ -1,222 +1,27 @@
 [
   {
-    "firstname": "Adam",
-    "lastname": "Dauby",
-    "position": "Programming"
-  },
-  {
-    "firstname": "Ana",
-    "lastname": "Lucci",
-    "position": ""
-  },
-  {
-    "firstname": "Andrew",
-    "lastname": "Bonace",
-    "position": "Programming"
-  },
-  {
-    "firstname": "Annika",
-    "lastname": "Behnke",
-    "position": ""
-  },
-  {
-    "firstname": "Adele",
-    "lastname": "Swecker",
-    "position": ""
-  },
-  {
-    "firstname": "Austin",
-    "lastname": "Musto",
+    "firstname": "Person",
+    "lastname": "1",
     "position": "Build"
   },
   {
-    "firstname": "Benjamin",
-    "lastname": "Fabian",
-    "position": "Build"
-  },
-  {
-    "firstname": "Braiden",
-    "lastname": "Stroba",
-    "position": ""
-  },
-  {
-    "firstname": "Brooke",
-    "lastname": "Sherman",
-    "position": ""
-  },
-  {
-    "firstname": "Bryan",
-    "lastname": "McShea",
+    "firstname": "Person",
+    "lastname": "2",
     "position": "Programming"
   },
   {
-    "firstname": "CJ",
-    "lastname": "Ciecierski",
-    "position": ""
-  },
-  {
-    "firstname": "Courtney",
-    "lastname": "Sheridan",
-    "position": "Build"
-  },
-  {
-    "firstname": "Dana",
-    "lastname": "Lynch",
-    "position": "Programming"
-  },
-  {
-    "firstname": "Eric",
-    "lastname": "Huth",
-    "position": "Build"
-  },
-  {
-    "firstname": "Ethan",
-    "lastname": "Hargrove",
-    "position": "Programming"
-  },
-  {
-    "firstname": "Gage",
-    "lastname": "Pahlman",
+    "firstname": "Person",
+    "lastname": "3",
     "position": "Wiring"
   },
   {
-    "firstname": "Gregory",
-    "lastname": "Sisco",
-    "position": ""
-  },
-  {
-    "firstname": "Heather",
-    "lastname": "Ciaramitaro",
-    "position": ""
-  },
-  {
-    "firstname": "Ian",
-    "lastname": "Sunny",
-    "position": ""
-  },
-  {
-    "firstname": "Jarrett",
-    "lastname": "Aiken",
-    "position": "Programming"
-  },
-  {
-    "firstname": "John",
-    "lastname": "White",
-    "position": ""
-  },
-  {
-    "firstname": "Jonathan",
-    "lastname": "Vilsack",
-    "position": ""
-  },
-  {
-    "firstname": "Julia",
-    "lastname": "Perry",
-    "position": ""
-  },
-  {
-    "firstname": "Levi",
-    "lastname": "Eckman",
+    "firstname": "Person",
+    "lastname": "4",
     "position": "Build"
   },
   {
-    "firstname": "Liam",
-    "lastname": "Novak",
-    "position": "Programming"
-  },
-  {
-    "firstname": "Luke",
-    "lastname": "Feisullin",
-    "position": ""
-  },
-  {
-    "firstname": "Manali",
-    "lastname": "Badwe",
-    "position": ""
-  },
-  {
-    "firstname": "Matthew",
-    "lastname": "Pekarcik",
-    "position": ""
-  },
-  {
-    "firstname": "Max",
-    "lastname": "Wang",
-    "position": "Programming"
-  },
-  {
-    "firstname": "McCain",
-    "lastname": "Varley",
-    "position": "Build"
-  },
-  {
-    "firstname": "Meg",
-    "lastname": "Anderson",
-    "position": "Build"
-  },
-  {
-    "firstname": "Michael",
-    "lastname": "Cao",
-    "position": "Programming"
-  },
-  {
-    "firstname": "Michael",
-    "lastname": "Rossi",
-    "position": "Build"
-  },
-  {
-    "firstname": "Obaida",
-    "lastname": "Akhrass",
-    "position": "Programming"
-  },
-  {
-    "firstname": "Piper",
-    "lastname": "Toto",
-    "position": ""
-  },
-  {
-    "firstname": "Ryan",
-    "lastname": "Lindeman",
-    "position": ""
-  },
-  {
-    "firstname": "Sam",
-    "lastname": "Dauby",
-    "position": "Build"
-  },
-  {
-    "firstname": "Shrey",
-    "lastname": "Ramesh",
-    "position": "Programming"
-  },
-  {
-    "firstname": "Stephen",
-    "lastname": "Kozuch",
-    "position": ""
-  },
-  {
-    "firstname": "Stephen",
-    "lastname": "Merante",
-    "position": ""
-  },
-  {
-    "firstname": "Tina",
-    "lastname": "Henninger",
-    "position": "Build"
-  },
-  {
-    "firstname": "Trevor",
-    "lastname": "McLeigh",
-    "position": "Wiring"
-  },
-  {
-    "firstname": "Vineet",
-    "lastname": "Madduru",
-    "position": ""
-  },
-  {
-    "firstname": "Yousef",
-    "lastname": "Yaseen",
-    "position": ""
+    "firstname": "Person",
+    "lastname": "5",
+    "position": "Outreach"
   }
 ]
